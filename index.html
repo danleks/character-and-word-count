@@ -28,19 +28,19 @@
 	<label for="text">Enter your text below.</label>
 	<textarea id="text" autocomplete="off"></textarea>
 
-	<p>You've written <strong><span id="word-count">0</span> words</strong> and <strong><span id="character-count">0</span> characters</strong>.</p>
+	<p aria-live="polite">You've written 0 words and 0 characters.</p>
 
 	<script>
 		const textarea = document.querySelector('[id="text"]');
         const wordCount = document.querySelector('[id="word-count"]');
         const charCount = document.querySelector('[id="character-count"]');
+		const paragraph = document.querySelector('p');
 
         textarea.addEventListener('input', (e) => {
             let charsArray = e.target.value.split('');
             let wordsArray = e.target.value.split(' ').filter(item => item.replace(/[^a-zA-Z ]/g, ""));
 
-            charCount.textContent = charsArray.length;
-            wordCount.textContent = wordsArray.length;
+			paragraph.textContent = `You've written ${ wordsArray.length } words and ${ charsArray.length } characters`;
         });
 	</script>
 </body>
